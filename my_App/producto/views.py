@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from . import models
 
 def home(request):
-    return render(request, "producto/index.html")
+    consulta_producto = models.Producto.objects.all()
+    context = {"productos": consulta_producto}
+    return render(request, "producto/index.html", context)

@@ -1,0 +1,27 @@
+<h1>Pizzas</h1>
+{% for producto in productos %}
+    {% if producto.categoria_id.nombre == "Pizzas" %}
+        <p>{{producto.nombre}} ${{producto.precio}}</p>
+    {% endif %}
+{% endfor %}
+
+<h1>Sandwichs</h1>
+{% for producto in productos %}
+    {% if producto.categoria_id.nombre == "Sandwichs" %}
+        <p>{{producto.nombre}} ${{producto.precio}}</p>
+    {% endif %}
+{% endfor %}
+
+<h1>Empanadas</h1>
+{% for producto in productos %}
+    {% if producto.categoria_id.nombre == "Empanadas" %}
+        <p>{{producto.nombre}} ${{producto.precio}}</p>
+    {% endif %}
+{% endfor %}
+
+<h1>Minutas</h1>
+{% for producto in productos %}
+    {% if producto.categoria_id.nombre == "Minutas" %}
+        <p>{{producto.nombre}} ${{producto.precio}}</p>
+    {% endif %}
+{% endfor %}
