@@ -1,44 +1,30 @@
 {% extends 'core/base.html' %}
+{% load static %}
 {% block section %}
-    <h1>Pizzas</h1>
-    {% for producto in object_list %}
-        {% if producto.categoria_id.nombre == "Pizzas" %}
-            <p>{{producto.nombre}} ${{producto.precio}}</p>
-            <a href="{% url 'producto:producto_detail' producto.id %}">Detalle</a>
-            <a href="{% url 'producto:producto_update' producto.id %}">Modificar</a>
-            <a href="{% url 'producto:producto_delete' producto.id %}">Eliminar</a>
-        {% endif %}
-    {% endfor %}
 
-    <h1>Sandwichs</h1>
-    {% for producto in object_list %}
-        {% if producto.categoria_id.nombre == "Sandwichs" %}
-            <p>{{producto.nombre}} ${{producto.precio}}</p>
-            <a href="{% url 'producto:producto_detail' producto.id %}">Detalle</a>
-            <a href="{% url 'producto:producto_update' producto.id %}">Modificar</a>
-            <a href="{% url 'producto:producto_delete' producto.id %}">Eliminar</a>
-        {% endif %}
-    {% endfor %}
+    {% regroup object_list by categoria_id.nombre as categorias %}
 
-    <h1>Empanadas</h1>
-    {% for producto in object_list %}
-        {% if producto.categoria_id.nombre == "Empanadas" %}
-            <p>{{producto.nombre}} ${{producto.precio}}</p>
-            <a href="{% url 'producto:producto_detail' producto.id %}">Detalle</a>
-            <a href="{% url 'producto:producto_update' producto.id %}">Modificar</a>
-            <a href="{% url 'producto:producto_delete' producto.id %}">Eliminar</a>
-        {% endif %}
-    {% endfor %}
-
-    <h1>Minutas</h1>
-    {% for producto in object_list %}
-        {% if producto.categoria_id.nombre == "Minutas" %}
-            <p>{{producto.nombre}} ${{producto.precio}}</p>
-            <a href="{% url 'producto:producto_detail' producto.id %}">Detalle</a>
-            <a href="{% url 'producto:producto_update' producto.id %}">Modificar</a>
-            <a href="{% url 'producto:producto_delete' producto.id %}">Eliminar</a>
-        {% endif %}
-    {% endfor %}
+    <div class="conteiner-categorias">
+        {% for categoria in categorias %}
+        <div class="conteiner-card-productocategoria">
+            <div class="card-categoria">
+                <h1>{{ categoria.grouper }}</h1>
+                <hr>
+                {% for producto in categoria.list %}
+                <div class="producto-opciones">
+                    <p class="producto-nombre">{{ producto.nombre }}</p>
+                    <p class="producto-precio">${{ producto.precio }}</p>
+                    <div class="producto-opc">
+                        <a href="{% url 'producto:producto_detail' producto.id %}"><img class="icono-opcion-producto" src="{% static 'core/img/lupa.webp' %}" alt="Detalle Producto"></a>
+                        <a href="{% url 'producto:producto_update' producto.id %}"><img class="icono-opcion-producto" src="{% static 'core/img/editar.webp' %}" alt="Detalle Producto"></a>
+                        <a href="{% url 'producto:producto_delete' producto.id %}"><img class="icono-opcion-producto" src="{% static 'core/img/eliminar.webp' %}" alt="Detalle Producto"></a>
+                    </div>
+                </div>     
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 
     <div class="container-link-crud-productos">
         <a class="link-crud-productos" href="{% url 'producto:home' %}">Volver a ver Productos</a>

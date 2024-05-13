@@ -9,7 +9,9 @@
         <button type="submit">Guardar</button>
     </form>
 
-    <a href="{% url 'producto:producto_list' %}">Volver a ver Productos</a>
-    <a href="{% url 'core:home' %}">Volver a Home</a>
+    <div class="container-link-crud-productos">
+        <a class="link-crud-productos" href="{% url 'producto:home' %}">Volver a ver Productos</a>
+        <a class="link-crud-productos" href="{% url 'core:home' %}">Volver a Home</a>
+    </div>
 
 {% endblock section %}
