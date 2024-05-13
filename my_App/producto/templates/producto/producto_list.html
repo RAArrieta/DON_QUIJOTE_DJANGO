@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+{% block section %}
+
+    <a href="{% url 'producto:producto_create' %}">Crear nuevo Producto</a>
+
+    <h1>Pizzas</h1>
+    {% for producto in object_list %}
+        {% if producto.categoria_id.nombre == "Pizzas" %}
+            <p>{{producto.nombre}} ${{producto.precio}}</p>
+            <a href="{% url 'producto:producto_detail' producto.id %}">Detalle</a>
+            <a href="{% url 'producto:producto_update' producto.id %}">Modificar</a>
+            <a href="{% url 'producto:producto_delete' producto.id %}">Eliminar</a>
+        {% endif %}
+    {% endfor %}
+
+    <h1>Sandwichs</h1>
+    {% for producto in object_list %}
+        {% if producto.categoria_id.nombre == "Sandwichs" %}
+            <p>{{producto.nombre}} ${{producto.precio}}</p>
+            <a href="{% url 'producto:producto_detail' producto.id %}">Detalle</a>
+            <a href="{% url 'producto:producto_update' producto.id %}">Modificar</a>
+            <a href="{% url 'producto:producto_delete' producto.id %}">Eliminar</a>
+        {% endif %}
+    {% endfor %}
+
+    <h1>Empanadas</h1>
+    {% for producto in object_list %}
+        {% if producto.categoria_id.nombre == "Empanadas" %}
+            <p>{{producto.nombre}} ${{producto.precio}}</p>
+            <a href="{% url 'producto:producto_detail' producto.id %}">Detalle</a>
+            <a href="{% url 'producto:producto_update' producto.id %}">Modificar</a>
+            <a href="{% url 'producto:producto_delete' producto.id %}">Eliminar</a>
+        {% endif %}
+    {% endfor %}
+
+    <h1>Minutas</h1>
+    {% for producto in object_list %}
+        {% if producto.categoria_id.nombre == "Minutas" %}
+            <p>{{producto.nombre}} ${{producto.precio}}</p>
+            <a href="{% url 'producto:producto_detail' producto.id %}">Detalle</a>
+            <a href="{% url 'producto:producto_update' producto.id %}">Modificar</a>
+            <a href="{% url 'producto:producto_delete' producto.id %}">Eliminar</a>
+        {% endif %}
+    {% endfor %}
+
+    <a href="{% url 'producto:home' %}">Volver a ver Productos</a>
+    <a href="{% url 'core:home' %}">Volver a Home</a>
+
+{% endblock section %}
+

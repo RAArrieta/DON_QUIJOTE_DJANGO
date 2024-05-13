@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+
+{% block section %}
+    
+    <p>¿Confirma eliminar "{{ object.nombre }}"?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirmar</button>
+    </form>
+
+    <a href="{% url 'producto:producto_list' %}">Volver a ver Productos</a>
+    <a href="{% url 'core:home' %}">Volver a Home</a>
+
+{% endblock section %}

@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+
+{% block section %}
+    <h1>estoy en crear categoria</h1>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Guardar</button>
+    </form>
+
+    <a href="{% url 'producto:producto_list' %}">Volver a ver Productos</a>
+    <a href="{% url 'core:home' %}">Volver a Home</a>
+
+{% endblock section %}
