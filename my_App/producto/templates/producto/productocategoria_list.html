@@ -1,34 +1,15 @@
 {% extends 'core/base.html' %}
 {% block section %}
-    <h1>estoy en enlistar</h1>
+    <h1>estoy en enlistar categoria</h1>
 
-    <h1>Pizzas</h1>
-    {% for producto in productos %}
-        {% if producto.categoria_id.nombre == "Pizzas" %}
-            <p>{{producto.nombre}} ${{producto.precio}}</p>
-        {% endif %}
+    {% for categoria in object_list %}
+        <p>{{categoria.nombre}}</p>
+        <a href="{% url 'producto:productocategoria_detail' categoria.id %}">Detalle</a>
+        <a href="{% url 'producto:productocategoria_update' categoria.id %}">Modificar</a>
+        <a href="{% url 'producto:productocategoria_delete' categoria.id %}">Eliminar</a>
     {% endfor %}
 
-    <h1>Sandwichs</h1>
-    {% for producto in productos %}
-        {% if producto.categoria_id.nombre == "Sandwichs" %}
-            <p>{{producto.nombre}} ${{producto.precio}}</p>
-        {% endif %}
-    {% endfor %}
-
-    <h1>Empanadas</h1>
-    {% for producto in productos %}
-        {% if producto.categoria_id.nombre == "Empanadas" %}
-            <p>{{producto.nombre}} ${{producto.precio}}</p>
-        {% endif %}
-    {% endfor %}
-
-    <h1>Minutas</h1>
-    {% for producto in productos %}
-        {% if producto.categoria_id.nombre == "Minutas" %}
-            <p>{{producto.nombre}} ${{producto.precio}}</p>
-        {% endif %}
-    {% endfor %}
-
+    <a href="{% url 'producto:home' %}">Volver a Productos</a>
+    <a href="{% url 'core:home' %}">Volver a Home</a>
+    
 {% endblock section %}
-
