@@ -18,8 +18,10 @@
 
     {% include 'core/components/navbar.html' %}
 
-    {% block section %}
-    {% endblock section %}
+    <section class="section-container">
+        {% block section %}
+        {% endblock section %}
+    </section>
 
     {% include 'core/components/footer.html' %}
 </body>
