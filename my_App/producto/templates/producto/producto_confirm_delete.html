@@ -1,13 +1,14 @@
 {% extends 'core/base.html' %}
 
 {% block section %}
-    
-    <p>¿Confirma eliminar "{{ object.nombre }}"?</p>
+    <div class="card-categoria">
+        <p>¿Confirma eliminar "{{ object.nombre }}"?</p>
 
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Confirmar</button>
-    </form>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="boton-confir-delete">Confirmar</button>
+        </form>
+    </div>
 
     <div class="container-link-crud-productos">
         <a class="link-crud-productos" href="{% url 'producto:home' %}">Volver a ver Productos</a>

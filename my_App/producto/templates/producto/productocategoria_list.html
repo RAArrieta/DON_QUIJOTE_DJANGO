@@ -1,15 +1,25 @@
 {% extends 'core/base.html' %}
+{% load static %}
 {% block section %}
-    <h1>estoy en enlistar categoria</h1>
 
     {% for categoria in object_list %}
-        <p>{{categoria.nombre}}</p>
-        <a href="{% url 'producto:productocategoria_detail' categoria.id %}">Detalle</a>
-        <a href="{% url 'producto:productocategoria_update' categoria.id %}">Modificar</a>
-        <a href="{% url 'producto:productocategoria_delete' categoria.id %}">Eliminar</a>
+        <div class="conteiner-categorias2">
+            <div class="card-categoria2">
+                <div class="categoria2-opciones">
+                    <p class="categoria-nombre">{{categoria.nombre}}</p>
+                    <div class="categoria-opc">
+                        <a href="{% url 'producto:productocategoria_detail' categoria.id %}"><img class="icono-opcion-producto" src="{% static 'core/img/lupa.webp' %}" alt="Detalle Producto"></a>
+                        <a href="{% url 'producto:productocategoria_update' categoria.id %}"><img class="icono-opcion-producto" src="{% static 'core/img/editar.webp' %}" alt="Detalle Producto"></a>
+                        <a href="{% url 'producto:productocategoria_delete' categoria.id %}"><img class="icono-opcion-producto" src="{% static 'core/img/eliminar.webp' %}" alt="Detalle Producto"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     {% endfor %}
 
-    <a href="{% url 'producto:home' %}">Volver a Productos</a>
-    <a href="{% url 'core:home' %}">Volver a Home</a>
-    
+    <div class="container-link-crud-productos">
+        <a class="link-crud-productos" href="{% url 'producto:productocategoria_list' %}">Volver a ver Categorias</a>
+        <a class="link-crud-productos" href="{% url 'core:home' %}">Volver a Home</a>
+    </div>
+
 {% endblock section %}

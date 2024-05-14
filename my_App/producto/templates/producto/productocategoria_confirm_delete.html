@@ -2,14 +2,18 @@
 
 {% block section %}
     
-    <p>¿Confirma eliminar "{{ object.nombre }}"?</p>
+    <div class="card-categoria">
+        <p>¿Confirma eliminar "{{ object.nombre }}"?</p>
 
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Confirmar</button>
-    </form>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="boton-confir-delete">Confirmar</button>
+        </form>
+    </div>
 
-    <a href="{% url 'producto:productocategoria_list' %}">Volver a ver Productos</a>
-    <a href="{% url 'core:home' %}">Volver a Home</a>
+    <div class="container-link-crud-productos">
+        <a class="link-crud-productos" href="{% url 'producto:productocategoria_list' %}">Volver a ver Categorias</a>
+        <a class="link-crud-productos" href="{% url 'core:home' %}">Volver a Home</a>
+    </div>
 
 {% endblock section %}

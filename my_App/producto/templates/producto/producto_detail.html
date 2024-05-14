@@ -1,10 +1,13 @@
 {% extends 'core/base.html' %}
 {% block section %}
 
-    <h1>{{ object.nombre }}</h1>
-    <p>Categoria: {{ object.categoria_id }}</p>
-    <p>Descripción: {{ object.descripcion }}</p>
-    <p>Precio: ${{ object.precio }}</p>
+    <div class="card-categoria">
+        <h1>{{ object.nombre }}</h1>
+        <hr>
+        <p class="detalle-producto">Categoria: {{ object.categoria_id }}</p>
+        <p class="detalle-producto">Descripción: {{ object.descripcion }}</p>
+        <p class="detalle-producto">Precio: ${{ object.precio }}</p>
+    </div>
 
     <div class="container-link-crud-productos">
         <a class="link-crud-productos" href="{% url 'producto:home' %}">Volver a ver Productos</a>
