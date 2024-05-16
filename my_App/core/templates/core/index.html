@@ -2,7 +2,7 @@
 {% load static %}
 {% block section %}
 
-<a class="acceso-link" {% if user.is_authenticated %} href="{% url 'producto:home' %}" {% else %} href="#" {% endif %}>
+<a class="acceso-link" href="{% url 'producto:home' %}">
     <img class="section-img" src="{% static 'core/img/productos.webp' %}" alt="Productos">
     Productos
 </a>
