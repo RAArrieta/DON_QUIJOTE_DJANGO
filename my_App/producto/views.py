@@ -35,7 +35,7 @@ class ProductoCategoriaUpdate(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("producto:productocategoria_list")
     
 class ProductoCategoriaDelete(LoginRequiredMixin, DeleteView):
-    model = models.    model = models.ProductoCategoria
+    model = models.ProductoCategoria
     success_url = reverse_lazy("producto:productocategoria_list")
 
 
@@ -45,13 +45,13 @@ class ProductoDetail(LoginRequiredMixin, DetailView):
 class ProductoList(LoginRequiredMixin, ListView):
     model = models.Producto
 
-    def get_queryset(self) -> QuerySet:
+    def get_queryset(self):
         if self.request.GET.get("consulta"):
             consulta = self.request.GET.get("consulta")
             object_list = models.Producto.objects.filter(nombre__icontains=consulta)
         else:
             object_list = models.Producto.objects.all()
-        return object_list
+        return object_list.order_by('categoria_id__nombre')
 
 class ProductoCreate(LoginRequiredMixin, CreateView):
     model = models.Producto
