@@ -1,6 +1,21 @@
 <nav class="container-nav">
     <ul class="list-app">
-        <li class="list-link"><a class="link-app" href="{% url 'core:home' %}">Escritorio</a></li>
-        <li class="list-link"><a class="link-app" href="{% url 'producto:home' %}">Productos</a></li>
+        
+        {% if user.is_authenticated %}
+            <li class="list-link"><a class="link-app">Usuario: {{ user.username }}</a></li> 
+            <li class="link-app">
+                <form action="{% url 'core:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+
+            
+            <li class="list-link"><a class="link-app" href="{% url 'core:home' %}">Escritorio</a></li>
+            <li class="list-link"><a class="link-app" href="{% url 'producto:home' %}">Productos</a></li> 
+        {% else %}
+            <li class="list-link"><a class="link-app" href="{% url 'core:login' %}">Login</a></li>
+        {% endif %}
+
     </ul>
 </nav>
