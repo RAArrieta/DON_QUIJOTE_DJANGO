@@ -5,15 +5,15 @@
         <h1 class="titulo-producto-index">Productos</h1>
         <hr>
         <div class="container-link-crud-productos">
-            <a class="link-crud-productos" href="{% url 'producto:producto_create' %}">Crear nuevo Producto</a>
             <a class="link-crud-productos" href="{% url 'producto:producto_list' %}">Ver Productos</a>
+            <a class="link-crud-productos" href="{% url 'producto:producto_create' %}">Crear nuevo Producto</a>
         </div>
 
         <h1 class="titulo-producto-index">Categoria de productos</h1>
         <hr>
-        <div class="container-link-crud-productos">      
-            <a class="link-crud-productos" href="{% url 'producto:productocategoria_create' %}">Crear Categoria</a>
-            <a class="link-crud-productos" href="{% url 'producto:productocategoria_list' %}">Ver Categorias</a>
+        <div class="container-link-crud-productos">    
+            <a class="link-crud-productos" href="{% url 'producto:productocategoria_list' %}">Ver Categorias</a>  
+            <a class="link-crud-productos" href="{% url 'producto:productocategoria_create' %}">Crear Categoria</a> 
         </div>
     </div>
 {% endblock section %}
