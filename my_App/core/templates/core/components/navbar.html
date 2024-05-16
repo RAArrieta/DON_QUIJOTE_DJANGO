@@ -2,13 +2,16 @@
     <ul class="list-app">
         
         {% if user.is_authenticated %}
-            <li class="list-link"><a class="link-app">Usuario: {{ user.username }}</a></li> 
-            <li class="link-app">
-                <form action="{% url 'core:logout' %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit">Logout</button>
-                </form>
-            </li>
+            <div class="usuario-logout">
+                <li class="list-link"><a>Usuario: {{ user.username }}</a></li> 
+                <li>
+                    <form action="{% url 'core:logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-logout"><u>Cerrar sesión</u></button>
+                    </form>
+                </li>
+            </div>
+            
 
             
             <li class="list-link"><a class="link-app" href="{% url 'core:home' %}">Escritorio</a></li>

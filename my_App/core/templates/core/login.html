@@ -5,10 +5,10 @@
 
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form }}
 
         <input type="hidden" name="next" value="{% url 'core:home' %}">
-        <button type="submit">Ingresar</button>
-        <a href="{% url 'core:home' %}">Cancelar</a>
+        <button type="submit" class="link-crud-productos">Iniciar sesión</button>
+        <a href="{% url 'core:home' %}" class="boton-confir-delete">Cancelar</a>
     </form>
 {% endblock section %}
