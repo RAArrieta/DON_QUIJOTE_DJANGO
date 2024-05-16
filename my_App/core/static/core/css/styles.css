@@ -61,12 +61,15 @@
 }
 
 .link-app {
-  color: #000; /* Texto negro */
+  color: #000; 
   text-decoration: none;
   font-size: 18px;
   display: block;
-  padding: 10px;
+  padding: 10px 40px;
   transition: background-color 0.3s ease;
+}
+.usuario {
+  padding: 20px 20px;
 }
 
 .link-app:hover {
@@ -266,4 +269,15 @@
   display: flex;
   justify-content: flex-end;
   column-gap: 10px;
+}
+.usuario-logout {
+  display: flex;
+  column-gap: 15px;
+  padding-left: 15px;
+  padding-top: 15px;
+  background-color: #ced4da;
+}
+.btn-logout {
+  border: none;
+  background-color: #ced4da;
 }
