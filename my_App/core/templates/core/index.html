@@ -2,6 +2,11 @@
 {% load static %}
 {% block section %}
 
+<a class="acceso-link" href="{% url 'pedido:home' %}">
+    <img class="section-img" src="{% static 'core/img/pedidos.webp' %}" alt="Pedidos">
+    Pedidos
+</a>
+
 <a class="acceso-link" href="{% url 'producto:home' %}">
     <img class="section-img" src="{% static 'core/img/productos.webp' %}" alt="Productos">
     Productos
