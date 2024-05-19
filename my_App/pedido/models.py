@@ -1,15 +1,14 @@
 from django.db import models
 from django.utils import timezone
-from datetime import datetime
 
 class Pedido(models.Model):
     ESTADO_CHOICES = [
-        ('Entregado', 'ENTREGADO'),
-        ('Pendiente', 'PENDIENTE'),
-        ('Cancelado', 'CANCELADO')
+        ('Entregado', 'Entregado'),
+        ('Pendiente', 'Pendiente'),
+        ('Cancelado', 'Cancelado')
     ]
 
-    MEDIO_PAGO_CHOICES = [
+    PAGO_CHOICES = [
         ('Efectivo', 'P. EFECT'),
         ('Transferencia', 'P. TRANSF'),
         ('Debito', 'P. DEBITO'),
@@ -24,7 +23,7 @@ class Pedido(models.Model):
     producto = models.ForeignKey("producto.Producto", on_delete=models.DO_NOTHING)
     cantidad = models.IntegerField(default=1)
     precio_total = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-    medio_pago = models.CharField(max_length=13, choices=MEDIO_PAGO_CHOICES, default='Cobrar')
+    pago = models.CharField(max_length=13, choices=PAGO_CHOICES, default='Cobrar')
 
     def save(self, *args, **kwargs):
         if not self.id:

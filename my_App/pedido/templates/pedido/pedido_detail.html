@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% block section %}
+
+    <div class="card-categoria">
+        <h1>Pedido {{ object.id }}</h1>
+        <hr>
+        <p class="detalle-producto">Estado {{ object.estado}}</p>
+        <p class="detalle-producto">Hora: {{ object.hora }}</p>
+        <p class="detalle-producto">Dirección: {{ object.direccion }}</p>
+        <p class="detalle-producto">Cliente: {{ object.cliente }}</p>
+        <p class="detalle-producto">Observación: {{ object.observacion }}</p>
+        <p class="detalle-producto">Producto: {{ object.producto.nombre }}</p>
+        <p class="detalle-producto">Cantidad: {{ object.cantidad }}</p>
+        <p class="detalle-producto">Precio total: ${{ object.precio_total }}</p>
+        <p class="detalle-producto">Pago: {{ object.pago }}</p>
+
+    </div>
+
+    <div class="container-link-crud-productos">
+        <a class="link-crud-productos" href="{% url 'pedidos:home' %}">Volver a ver pedido</a>
+        <a class="link-crud-productos" href="{% url 'core:home' %}">Volver a Home</a>
+    </div>
+
+{% endblock section %}
+

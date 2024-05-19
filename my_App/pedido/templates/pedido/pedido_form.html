@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+
+{% block section %}
+
+    <form class="form-container" action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button class="link-crud-productos" type="submit">Guardar</button>
+    </form>
+
+    <div class="container-link-crud-productos">
+        <a class="link-crud-productos" href="{% url 'pedidos:home' %}">Volver a ver pedido</a>
+        <a class="link-crud-productos" href="{% url 'core:home' %}">Volver a Home</a>
+    </div>
+
+{% endblock section %}
