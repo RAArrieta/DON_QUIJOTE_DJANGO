@@ -281,3 +281,13 @@
   border: none;
   background-color: #ced4da;
 }
+
+/* OPCIONES PEDIDOS */
+.opciones_pedidos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.opciones_pedidos_separador {
+  margin: 15px;
+}

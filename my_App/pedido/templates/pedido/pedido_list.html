@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block section %}
+    {% include 'pedido/components/opciones_pedidos.html' %}
+
     {% for pedido in object_list %}
     <h1>Pedido: {{ pedido.id }}</h1>
     <h2 style="color: red;">{{pedido.estado}}</h2>
@@ -14,10 +16,6 @@
     <hr>
     {% endfor %}
     
-    <div class="container-link-crud-productos">
-        <a class="link-crud-productos" href="{% url 'pedidos:home' %}">Volver a ver pedido</a>
-        <a class="link-crud-productos" href="{% url 'core:home' %}">Volver a Home</a>
-    </div>
 {% endblock section %}
 
 
