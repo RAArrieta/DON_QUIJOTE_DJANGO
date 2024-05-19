@@ -3,17 +3,22 @@
 
 {% block section %}
     {% include 'pedido/components/opciones_pedidos.html' %}
-
     {% for pedido in object_list %}
-    <h1>Pedido: {{ pedido.id }}</h1>
-    <h2 style="color: red;">{{pedido.estado}}</h2>
-    <h2>{{ pedido.hora|date:"H:i" }}</h2>
-    <p>Dirección: {{pedido.direccion}}</p>
-    <p>Observación: {{pedido.observacion}}</p>
-    <p>Nombre: {{pedido.cliente}}</p>
-    <h4>Producto: {{pedido.cantidad}} {{pedido.producto.nombre}}</h4>
-    <h3>TOTAL: {{pedido.precio_total}} {{pedido.pago}}</h3>
-    <hr>
+        
+        <h1>Pedido: {{ pedido.id }}</h1>
+        <h2 style="color: red;">{{pedido.estado}}</h2>
+        <h2>{{ pedido.hora|date:"H:i" }}</h2>
+        <p>Dirección: {{pedido.direccion}}</p>
+        <p>Observación: {{pedido.observacion}}</p>
+        <p>Nombre: {{pedido.cliente}}</p>
+        <h3>Productos:</h3>
+        <ul>
+            {% for pedido_producto in pedido.pedido_productos.all %}
+                <li>{{ pedido_producto.producto.nombre }} x {{ pedido_producto.cantidad }}</li>
+            {% endfor %}
+        </ul>    
+        <h3>TOTAL: {{pedido.precio_total}} {{pedido.pago}}</h3>
+        <hr>
     {% endfor %}
     
 {% endblock section %}
