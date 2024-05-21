@@ -6,7 +6,7 @@ from .forms import PedidoForm, PedidoProductoFormSet
 from . import forms, models
 from django.urls import reverse_lazy
 from django.db.models.query import QuerySet
-from django.views.generic import (CreateView, DeleteView, DetailView, ListView, UpdateView,)
+from django.views.generic import (DeleteView, DetailView, ListView, UpdateView,)
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -27,12 +27,7 @@ class PedidoList(LoginRequiredMixin, ListView):
         else:
             object_list = models.Pedido.objects.all()
         return object_list
-    
-# class PedidoCreate(LoginRequiredMixin, CreateView):
-#     model = models.Pedido
-#     form_class = forms.PedidoForm
-#     success_url = reverse_lazy("pedidos:home")
-    
+       
 class PedidoUpdate(LoginRequiredMixin, UpdateView):
     model = models.Pedido
     form_class = forms.PedidoForm

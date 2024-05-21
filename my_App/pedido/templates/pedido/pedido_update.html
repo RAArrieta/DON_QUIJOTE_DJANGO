@@ -1,14 +1,31 @@
 {% extends 'core/base.html' %}
 
 {% block section %}
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Guardar</button>
-    </form>
-
-    <div class="container-link-crud-productos">
-        <a class="link-crud-productos" href="{% url 'pedidos:home' %}">Volver a ver pedido</a>
-        <a class="link-crud-productos" href="{% url 'core:home' %}">Volver a Home</a>
+<form method="post">
+    {% csrf_token %}
+    {{ pedido_form.as_p }}
+    {{ formset.management_form }}
+    <h2>Productos</h2>
+    <div id="formset-container">
+        {% for form in formset %}
+            {{ form.as_p }}
+        {% endfor %}
     </div>
+    <button type="button" id="add-product">Agregar Producto</button>
+    <button type="submit">Guardar Pedido</button>
+</form>
+
+<script>
+    document.getElementById('add-product').onclick = function() {
+        const formsetContainer = document.getElementById('formset-container');
+        const formsetPrefix = '{{ formset.prefix }}';
+        const totalForms = document.getElementById('id_' + formsetPrefix + '-TOTAL_FORMS');
+        const currentCount = totalForms.value;
+        const newCount = parseInt(currentCount) + 1;
+        totalForms.value = newCount;
+
+        const newFormHtml = '{{ formset.empty_form.as_p|escapejs }}'.replace(/__prefix__/g, currentCount);
+        formsetContainer.insertAdjacentHTML('beforeend', newFormHtml);
+    };
+</script>
 {% endblock section %}

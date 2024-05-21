@@ -4,15 +4,24 @@
     <div class="card-categoria">
         <h1>Pedido {{ object.id }}</h1>
         <hr>
-        <p class="detalle-producto">Estado {{ object.estado}}</p>
-        <p class="detalle-producto">Hora: {{ object.hora }}</p>
+        <p class="detalle-producto" style="color: red;"></span>>Estado {{ object.estado}}</p>
+        <p class="detalle-producto">Hora: {{ object.hora|time:"H:i" }}</p>
         <p class="detalle-producto">Dirección: {{ object.direccion }}</p>
         <p class="detalle-producto">Cliente: {{ object.cliente }}</p>
         <p class="detalle-producto">Observación: {{ object.observacion }}</p>
-        <p class="detalle-producto">Producto: {{ object.producto.nombre }}</p>
-        <p class="detalle-producto">Cantidad: {{ object.cantidad }}</p>
-        <p class="detalle-producto">Precio total: ${{ object.precio_total }}</p>
-        <p class="detalle-producto">Pago: {{ object.pago }}</p>
+        <h3>Productos:</h3>
+
+        {% for pedido_producto in object.pedidoproducto_set.all %}
+            <p>{{ pedido_producto.cantidad }} {{ pedido_producto.producto.nombre }}</p>
+        {% endfor %}
+
+
+
+        <p class="detalle-producto"><strong>TOTAL: ${{ object.precio_total }}</strong> {{ object.pago }}</p>
+
+
+
+                
 
     </div>
 

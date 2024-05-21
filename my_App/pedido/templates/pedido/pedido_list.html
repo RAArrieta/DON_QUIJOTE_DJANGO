@@ -9,6 +9,11 @@
     {% if object_list %}
         {% for pedido in object_list %}
             <div class="pedido">
+                <div class="producto-opc">
+                    <a href="{% url 'pedidos:pedido_detail' pedido.id %}"><img class="icono-opcion-producto" src="{% static 'core/img/lupa.webp' %}" alt="Detalle Pedido"></a>
+                    <a href="{% url 'pedidos:pedido_update' pedido.id %}"><img class="icono-opcion-producto" src="{% static 'core/img/editar.webp' %}" alt="Modificar Pedido"></a>
+                    <a href="{% url 'pedidos:pedido_delete' pedido.id %}"><img class="icono-opcion-producto" src="{% static 'core/img/eliminar.webp' %}" alt="Borrar Pedido"></a>
+                </div>
                 <h2>Pedido: {{ pedido.id }}</h2>
                 <p>Estado: <span style="color: red;">{{ pedido.estado }}</span></p>
                 <p>Hora: {{ pedido.hora|time:"H:i" }}</p>
@@ -26,6 +31,7 @@
                 <p><strong>TOTAL:</strong> {{ pedido.precio_total }} {{ pedido.pago }}</p>
                 <hr>
             </div>
+
         {% endfor %}
     {% else %}
         <p>No hay pedidos para mostrar.</p>
