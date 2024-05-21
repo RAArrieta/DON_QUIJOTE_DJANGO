@@ -11,9 +11,6 @@
         </form>
     </div>
 
-    <div class="container-link-crud-productos">
-        <a class="link-crud-productos" href="{% url 'pedidos:home' %}">Volver a ver pedido</a>
-        <a class="link-crud-productos" href="{% url 'core:home' %}">Volver a Home</a>
-    </div>
+    {% include 'pedido/components/botones_volver.html' %}
 
 {% endblock section %}

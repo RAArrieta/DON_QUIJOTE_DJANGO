@@ -59,7 +59,7 @@ class PedidoUpdate(LoginRequiredMixin, UpdateView):
     
 class PedidoDelete(LoginRequiredMixin, DeleteView):
     model = models.Pedido
-    success_url = reverse_lazy("pedidos:home")
+    success_url = reverse_lazy("pedidos:pedido_list")
 
 def PedidoCreate(request):
     if request.method == "POST":
@@ -72,7 +72,7 @@ def PedidoCreate(request):
                 pedido_producto.pedido = pedido
                 pedido_producto.save()
             pedido.save()
-            return redirect('pedidos:pedido_list')  # Redirigir a una página de éxito
+            return redirect('pedidos:pedido_list')  
     else:
         pedido_form = PedidoForm()
         formset = PedidoProductoFormSet()
@@ -81,4 +81,6 @@ def PedidoCreate(request):
         'pedido_form': pedido_form,
         'formset': formset,
     })
+    
+
 
