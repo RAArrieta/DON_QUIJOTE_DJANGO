@@ -24,13 +24,18 @@ class PedidoDetail(LoginRequiredMixin, DetailView):
 class PedidoList(LoginRequiredMixin, ListView):
     model = models.Pedido
 
-    def get_queryset(self) -> QuerySet:
-        if self.request.GET.get("consulta"):
-            consulta = self.request.GET.get("consulta")
-            object_list = models.Pedido.objects.filter(nombre__icontains=consulta)
-        else:
-            object_list = models.Pedido.objects.all()
-        return object_list
+    def get_queryset(self):
+        queryset = models.Pedido.objects.all()
+        consulta = self.request.GET.get("consulta")
+        estado = self.request.GET.get("estado")
+        
+        if consulta:
+            queryset = queryset.filter(nombre__icontains=consulta)
+        
+        if estado:
+            queryset = queryset.filter(estado=estado)
+        
+        return queryset
        
 class PedidoUpdate(LoginRequiredMixin, UpdateView):
     model = Pedido
