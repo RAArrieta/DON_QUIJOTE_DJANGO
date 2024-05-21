@@ -23,14 +23,6 @@ class Pedido(models.Model):
     precio_total = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     pago = models.CharField(max_length=13, choices=PAGO_CHOICES, default='Cobrar')
 
-    # def save(self, *args, **kwargs):
-    #     if not self.id:
-    #         now = timezone.localtime(timezone.now())
-    #         self.hora = now.replace(second=0, microsecond=0).time()
-    #     # Calcular el precio total sumando los precios de todos los productos asociados
-    #     self.precio_total = sum(item.producto.precio * item.cantidad for item in self.pedidoproducto_set.all())
-    #     super().save(*args, **kwargs)
-
     def save(self, *args, **kwargs):
         if not self.id:
             now = timezone.localtime(timezone.now())

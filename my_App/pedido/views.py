@@ -42,12 +42,6 @@ class PedidoDelete(LoginRequiredMixin, DeleteView):
     model = models.Pedido
     success_url = reverse_lazy("pedidos:home")
 
-
-
-
-
-
-
 def PedidoCreate(request):
     if request.method == "POST":
         pedido_form = PedidoForm(request.POST)
@@ -68,3 +62,4 @@ def PedidoCreate(request):
         'pedido_form': pedido_form,
         'formset': formset,
     })
+
