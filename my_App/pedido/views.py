@@ -9,6 +9,10 @@ from django.db.models.query import QuerySet
 from django.views.generic import (DeleteView, DetailView, ListView, UpdateView,)
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
+
 
 def home(request):
     return render(request, "pedido/index.html")
@@ -82,5 +86,13 @@ def PedidoCreate(request):
         'formset': formset,
     })
     
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def delete_all_orders(request):
+    if request.method == 'POST':
+        Pedido.objects.all().delete()
+        messages.success(request, 'Todos los pedidos han sido eliminados.')
+        return redirect('pedidos:pedido_list') 
 
+    return render(request, 'pedido/pedidotodos_confirm_delete.html')
 
