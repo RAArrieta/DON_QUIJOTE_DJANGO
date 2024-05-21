@@ -9,6 +9,10 @@ from django.db.models.query import QuerySet
 from django.views.generic import (DeleteView, DetailView, ListView, UpdateView,)
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.db import connection
+
 
 def home(request):
     return render(request, "pedido/index.html")
@@ -82,5 +86,18 @@ def PedidoCreate(request):
         'formset': formset,
     })
     
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def delete_all_orders(request):
+    if request.method == 'POST':
+        # Borrar todos los pedidos
+        Pedido.objects.all().delete()
+        
+        # Reiniciar el contador del id (autoincrement) en SQLite
+        with connection.cursor() as cursor:
+            cursor.execute("DELETE FROM sqlite_sequence WHERE name='pedido_pedido'")
+        
+        messages.success(request, 'Todos los pedidos han sido eliminados y el contador de IDs ha sido reiniciado.')
+        return redirect('pedidos:pedido_list')  # Cambia 'pedido_list' al nombre de la vista a la que quieras redirigir
 
-
+    return render(request, 'pedido/pedidotodos_confirm_delete.html')

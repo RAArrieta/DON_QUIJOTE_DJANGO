@@ -10,4 +10,5 @@ urlpatterns =[
     path("pedido/create/", views.PedidoCreate, name="pedido_create"),
     path("pedido/update/<int:pk>", views.PedidoUpdate.as_view(), name="pedido_update"),
     path("pedido/delete/<int:pk>", views.PedidoDelete.as_view(), name="pedido_delete"), 
+    path('delete-all-orders/', views.delete_all_orders, name='pedidotodos_confirm_delete'),
 ]

@@ -2,7 +2,7 @@
     <a class="link-crud-productos" href="{% url 'pedidos:pedido_create' %}">Nuevo Pedido</a>
     <a class="link-crud-productos">Ver Pendientes</a>
     <a class="link-crud-productos">Ver Entregados</a>
-    <a class="link-crud-productos">Borrar Pedidos</a>
+    <a class="link-crud-productos" href="{% url 'pedidos:pedidotodos_confirm_delete' %}">Borrar Pedidos</a>
     <a class="link-crud-productos" href="{% url 'core:home' %}">Volver a Home</a>
 </div>
 <hr class="opciones_pedidos_separador">
