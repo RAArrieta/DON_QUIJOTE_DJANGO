@@ -3,23 +3,34 @@
 
 {% block section %}
     {% include 'pedido/components/opciones_pedidos.html' %}
-    {% for pedido in object_list %}
-        
-        <h1>Pedido: {{ pedido.id }}</h1>
-        <h2 style="color: red;">{{pedido.estado}}</h2>
-        <h2>{{ pedido.hora|date:"H:i" }}</h2>
-        <p>Dirección: {{pedido.direccion}}</p>
-        <p>Observación: {{pedido.observacion}}</p>
-        <p>Nombre: {{pedido.cliente}}</p>
-        <h3>Productos:</h3>
-        <ul>
-            {% for pedido_producto in pedido.pedido_productos.all %}
-                <li>{{ pedido_producto.producto.nombre }} x {{ pedido_producto.cantidad }}</li>
-            {% endfor %}
-        </ul>    
-        <h3>TOTAL: {{pedido.precio_total}} {{pedido.pago}}</h3>
-        <hr>
-    {% endfor %}
+
+    <h1>Listado de Pedidos</h1>
+
+    {% if object_list %}
+        {% for pedido in object_list %}
+            <div class="pedido">
+                <h2>Pedido: {{ pedido.id }}</h2>
+                <p>Estado: <span style="color: red;">{{ pedido.estado }}</span></p>
+                <p>Hora: {{ pedido.hora|time:"H:i" }}</p>
+                <p>Dirección: {{ pedido.direccion }}</p>
+                <p>Observación: {{ pedido.observacion }}</p>
+                <p>Cliente: {{ pedido.cliente }}</p>
+
+                <h3>Productos:</h3>
+                <ul>
+                    {% for pedido_producto in pedido.pedidoproducto_set.all %}
+                        <li>{{ pedido_producto.cantidad }} {{ pedido_producto.producto.nombre }}</li>
+                    {% endfor %}
+                </ul>
+
+                <p><strong>TOTAL:</strong> {{ pedido.precio_total }} {{ pedido.pago }}</p>
+                <hr>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No hay pedidos para mostrar.</p>
+    {% endif %}
+    
     
 {% endblock section %}
 
