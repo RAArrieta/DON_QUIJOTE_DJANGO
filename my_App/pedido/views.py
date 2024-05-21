@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 
-
+from django.db import transaction
 from .forms import PedidoForm, PedidoProductoFormSet
-
+from .models import Pedido
 from . import forms, models
 from django.urls import reverse_lazy
 from django.db.models.query import QuerySet
@@ -29,9 +29,33 @@ class PedidoList(LoginRequiredMixin, ListView):
         return object_list
        
 class PedidoUpdate(LoginRequiredMixin, UpdateView):
-    model = models.Pedido
-    form_class = forms.PedidoForm
-    success_url = reverse_lazy("pedidos:home")
+    model = Pedido
+    form_class = PedidoForm
+    template_name = 'pedido/pedido_update.html'
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        if self.request.POST:
+            data['pedido_form'] = PedidoForm(self.request.POST, instance=self.object)
+            data['formset'] = PedidoProductoFormSet(self.request.POST, instance=self.object)
+        else:
+            data['pedido_form'] = PedidoForm(instance=self.object)
+            data['formset'] = PedidoProductoFormSet(instance=self.object)
+        return data
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        pedido_form = context['pedido_form']
+        formset = context['formset']
+        with transaction.atomic():
+            self.object = pedido_form.save()
+            if formset.is_valid():
+                formset.instance = self.object
+                formset.save()
+        return super().form_valid(pedido_form)
+
+    def get_success_url(self):
+        return reverse_lazy('pedidos:pedido_list')
     
 class PedidoDelete(LoginRequiredMixin, DeleteView):
     model = models.Pedido
