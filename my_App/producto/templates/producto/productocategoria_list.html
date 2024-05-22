@@ -1,5 +1,8 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% block titulo %}
+    {% include 'core/components/titulo.html' with titulo="Lista de Categorias" %}
+{% endblock titulo %}
 {% block section %}
 
     {% for categoria in object_list %}

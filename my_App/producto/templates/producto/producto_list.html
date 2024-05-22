@@ -1,5 +1,8 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% block titulo %}
+    {% include 'core/components/titulo.html' with titulo="Lista de Productos" %}
+{% endblock titulo %}
 {% block section %}
 
     {% regroup object_list by categoria_id.nombre as categorias %}

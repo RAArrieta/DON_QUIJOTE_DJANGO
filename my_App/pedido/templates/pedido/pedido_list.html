@@ -1,39 +1,48 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% block titulo %}
+    {% include 'core/components/titulo.html' with titulo="Detalle Pedido" %}
+{% endblock titulo %}
 
 {% block section %}
-    {% include 'pedido/components/opciones_pedidos.html' %}
 
-    {% if object_list %}
+    {% include 'pedido/components/opciones_pedidos.html' %}
+    <div class="form-container-pedidos">
+        {% if object_list %}
         {% for pedido in object_list %}
             <div class="pedido">
-                <div class="producto-opc">
+                <div class="pedido-opc">
                     <a href="{% url 'pedidos:pedido_detail' pedido.id %}"><img class="icono-opcion-producto" src="{% static 'core/img/lupa.webp' %}" alt="Detalle Pedido"></a>
                     <a href="{% url 'pedidos:pedido_update' pedido.id %}"><img class="icono-opcion-producto" src="{% static 'core/img/editar.webp' %}" alt="Modificar Pedido"></a>
                     <a href="{% url 'pedidos:pedido_delete' pedido.id %}"><img class="icono-opcion-producto" src="{% static 'core/img/eliminar.webp' %}" alt="Borrar Pedido"></a>
                 </div>
-                <h2>Pedido: {{ pedido.id }}</h2>
-                <p>Estado: <span style="color: red;">{{ pedido.estado }}</span></p>
-                <p>Hora: {{ pedido.hora|time:"H:i" }}</p>
-                <p>Dirección: {{ pedido.direccion }}</p>
-                <p>Observación: {{ pedido.observacion }}</p>
-                <p>Cliente: {{ pedido.cliente }}</p>
+                <div class="ped-est-hr">
+                    <h2 class="nro-pedido">{{ pedido.id }}</strong></h2>
+                    <p><span {% if pedido.estado == "Pendiente" or pedido.estado == "Cancelado" %} style="color: red;" {% else %} style="color: green;" {% endif %} class="estado">{{pedido.estado}}</span></p>
+                    <p>{{ pedido.hora|time:"H:i" }}</p>
+                </div>
+                
+                <p class="datos-pedido">Dir: {{ pedido.direccion }}</p>
+                <p class="datos-pedido">Obs: {{ pedido.observacion }}</p>
+                <p class="datos-pedido">Clt: {{ pedido.cliente }}</p>
+                <hr>
 
                 <h3>Productos:</h3>
-                <ul>
+                <div class="productos-pedidos">
                     {% for pedido_producto in pedido.pedidoproducto_set.all %}
-                        <li>{{ pedido_producto.cantidad }} {{ pedido_producto.producto.nombre }}</li>
+                        <p>{{ pedido_producto.cantidad }} {{ pedido_producto.producto.nombre }}</p>
                     {% endfor %}
-                </ul>
+                </div>
 
-                <p><strong>TOTAL:</strong> {{ pedido.precio_total }} {{ pedido.pago }}</p>
-                <hr>
+                <p class="precio-pago"><strong>TOTAL: ${{ pedido.precio_total }}</strong>  {{ pedido.pago }}</p>
             </div>
 
         {% endfor %}
     {% else %}
         <p>No hay pedidos para mostrar.</p>
     {% endif %}
+    </div>
+    
     
 {% endblock section %}
 

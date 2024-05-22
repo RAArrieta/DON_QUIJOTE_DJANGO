@@ -89,13 +89,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  row-gap: 10px;
   text-decoration: none;
+  font-size: 20px;
   color: black;
 }
 
 .section-img {
-  width: 10%;
-  height: 10%;
+  width: 100%;
+  height: 50%;
+}
+
+/* TITULO */
+.contenedor-plantilla-titulo {
+  padding:  0px 30px 10px 30px;
+}
+.plantilla-titulo {
+  font-size: 50px;
 }
 
 /* PRODUCTOS */
@@ -283,11 +293,96 @@
 }
 
 /* OPCIONES PEDIDOS */
+.pedido {
+  width: 250px;
+  height: 300px;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .opciones_pedidos {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  padding-bottom: 15px;
 }
-.opciones_pedidos_separador {
-  margin: 15px;
+.form-container-pedidos {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  column-gap: 25px;
+  row-gap: 25px;
+  justify-content: space-around;
+}
+.form {
+  width: 40%;
+}
+.pedido-opc {
+  grid-area: opc;
+  display: flex;
+  column-gap: 5px;
+  justify-content: flex-end;
+}
+.nro-pedido {
+  display: inline-block;
+  width: 30px;
+  height: 30px; 
+  line-height: 30px;
+  text-align: center; 
+  border: 1px solid black; /* Border style */
+  border-radius: 50%;
+
+  font-size: 24px; 
+  font-weight: bold; 
+}
+.ped-est-hr {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.estado {
+  text-transform: uppercase;
+}
+.datos-pedido {
+  margin-top: 2px;
+}
+
+.productos-pedidos {
+  height: 50%;
+  border: 1px solid grey;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  overflow-y: auto;
+}
+
+.precio-pago{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.container-iconos {
+  display: flex;
+  flex-direction: row;
+  width: 250px;
+  height: 250px;
+  column-gap: 20px;
+}
+.container-escritorio {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  
 }

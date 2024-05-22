@@ -1,20 +1,32 @@
 {% extends 'core/base.html' %}
-{% block section %}
+{% block titulo %}
+    {% include 'core/components/titulo.html' with titulo="Crear Pedido" %}
+{% endblock titulo %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ pedido_form.as_p }}
-    {{ formset.management_form }}
-    <h2>Productos</h2>
-    <div id="formset-container">
+{% block section %}
+<form class="form-container-pedidos" method="post">
+    <div class="form">
+        <h2>Datos</h2>
+        {% csrf_token %}
+        {{ pedido_form.as_p }}
+        {{ formset.management_form }}
+    </div>
+    <div class="form" id="formset-container">
+        <h2>Productos</h2>
         {% for form in formset %}
             {{ form.as_p }}
         {% endfor %}
+        <button class="link-crud-productos" type="button" id="add-product">Agregar Producto</button>
+        <button class="link-crud-productos" type="submit">Guardar Pedido</button>
     </div>
-    <button type="button" id="add-product">Agregar Producto</button>
-    <button type="submit">Guardar Pedido</button>
-</form>
 
+
+    
+</form>
+<div class="container-link-crud-productos">
+    <a class="link-crud-productos" href="{% url 'pedidos:pedido_list' %}">Volver a pedidos</a>
+    <a class="link-crud-productos" href="{% url 'core:home' %}">Volver a Home</a>
+</div>
 <script>
     document.getElementById('add-product').onclick = function() {
         const formsetContainer = document.getElementById('formset-container');
@@ -29,6 +41,6 @@
     };
 </script>
 
-{% include 'pedido/components/botones_volver.html' %}
+
 {% endblock section %}
 
