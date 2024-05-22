@@ -19,6 +19,8 @@
     {% include 'core/components/navbar.html' %}
 
     <section class="section-container">
+        {% block titulo %}
+        {% endblock titulo %}
         {% block section %}
         {% endblock section %}
     </section>

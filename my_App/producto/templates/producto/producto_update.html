@@ -1,7 +1,9 @@
 {% extends 'core/base.html' %}
+{% block titulo %}
+    {% include 'core/components/titulo.html' with titulo="Modificar Producto" %}
+{% endblock titulo %}
 
 {% block section %}
-    <h1>estoy en crear categoria</h1>
 
     <form action="" method="post">
         {% csrf_token %}
