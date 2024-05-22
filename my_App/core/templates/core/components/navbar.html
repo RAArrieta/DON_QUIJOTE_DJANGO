@@ -1,6 +1,5 @@
 <nav class="container-nav">
-    <ul class="list-app">
-        
+    <ul class="list-app">        
         {% if user.is_authenticated %}
             <div class="usuario-logout">
                 <li class="list-link"><a>Usuario: {{ user.username }}</a></li> 
@@ -17,6 +16,5 @@
         {% else %}
             <li class="list-link"><a class="link-app" href="{% url 'core:login' %}">Login</a></li>
         {% endif %}
-
     </ul>
 </nav>

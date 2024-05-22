@@ -1,18 +1,15 @@
 {% extends 'core/base.html' %}
+
 {% block titulo %}
     {% include 'core/components/titulo.html' with titulo="Modificar Producto" %}
 {% endblock titulo %}
 
 {% block section %}
-
     <form action="" method="post">
         {% csrf_token %}
         {{ form }}
         <button type="submit">Guardar</button>
     </form>
 
-    <div class="container-link-crud-productos">
-        <a class="link-crud-productos" href="{% url 'producto:home' %}">Volver a ver Productos</a>
-        <a class="link-crud-productos" href="{% url 'core:home' %}">Volver a Home</a>
-    </div>
+    {% include 'producto/components/btn_volver_listaproducto.html' %}
 {% endblock section %}

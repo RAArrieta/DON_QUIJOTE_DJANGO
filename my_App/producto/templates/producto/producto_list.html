@@ -1,10 +1,11 @@
 {% extends 'core/base.html' %}
 {% load static %}
+
 {% block titulo %}
     {% include 'core/components/titulo.html' with titulo="Lista de Productos" %}
 {% endblock titulo %}
-{% block section %}
 
+{% block section %}
     {% regroup object_list by categoria_id.nombre as categorias %}
 
     <div class="conteiner-categorias">
@@ -30,10 +31,8 @@
     </div>
 
     <div class="container-link-crud-productos">
-        <a class="link-crud-productos" href="{% url 'producto:home' %}">Volver a ver Productos</a>
-        <a class="link-crud-productos" href="{% url 'core:home' %}">Volver a Home</a>
+        <a class="link-crud-productos" href="{% url 'producto:home' %}">Productos</a>
+        <a class="link-crud-productos" href="{% url 'core:home' %}">Home</a>
     </div>
-
-
 {% endblock section %}
 

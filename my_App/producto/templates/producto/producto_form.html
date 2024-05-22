@@ -1,16 +1,19 @@
 {% extends 'core/base.html' %}
 
-{% block section %}
+{% block titulo %}
+    {% if form.instance.pk %}
+        {% include 'core/components/titulo.html' with titulo="Modificar Producto" %}
+    {% else %}
+        {% include 'core/components/titulo.html' with titulo="Crear Producto" %}
+    {% endif %}    
+{% endblock titulo %}
 
+{% block section %}
     <form class="form-container" action="" method="post">
         {% csrf_token %}
         {{ form }}
         <button class="link-crud-productos" type="submit">Guardar</button>
     </form>
 
-    <div class="container-link-crud-productos">
-        <a class="link-crud-productos" href="{% url 'producto:home' %}">Volver a ver Productos</a>
-        <a class="link-crud-productos" href="{% url 'core:home' %}">Volver a Home</a>
-    </div>
-
+    {% include 'producto/components/btn_volver_listaproducto.html' %}
 {% endblock section %}

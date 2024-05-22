@@ -1,34 +1,32 @@
 {% extends 'core/base.html' %}
+
 {% block titulo %}
     {% include 'core/components/titulo.html' with titulo="Detalle Pedido" %}
 {% endblock titulo %}
+
 {% block section %}
-
-    <div class="card-categoria">
-        <h1>Pedido {{ object.id }}</h1>
+    <div class="card-pedidos">
+        <div class="ped-est-hr">
+            <h2>Pedido: {{ pedido.id }}</strong></h2>
+            <p>Estado: <span {% if pedido.estado == "Pendiente" or pedido.estado == "Cancelado" %} style="color: red;" {% else %} style="color: green;" {% endif %} class="estado">{{pedido.estado}}</span></p>
+            <p>{{ pedido.hora|time:"H:i" }}Hs</p>
+        </div>
+        
+        <p class="datos-pedido">Dirección: {{ pedido.direccion }}</p>
+        <p class="datos-pedido">Observación: {{ pedido.observacion }}</p>
+        <p class="datos-pedido">Cliente: {{ pedido.cliente }}</p>
         <hr>
-        <p class="detalle-producto" style="color: red;"></span>>Estado {{ object.estado}}</p>
-        <p class="detalle-producto">Hora: {{ object.hora|time:"H:i" }}</p>
-        <p class="detalle-producto">Dirección: {{ object.direccion }}</p>
-        <p class="detalle-producto">Cliente: {{ object.cliente }}</p>
-        <p class="detalle-producto">Observación: {{ object.observacion }}</p>
+
         <h3>Productos:</h3>
+        <div class="productos-pedidos">
+            {% for pedido_producto in pedido.pedidoproducto_set.all %}
+                <p>{{ pedido_producto.cantidad }} {{ pedido_producto.producto.nombre }}</p>
+            {% endfor %}
+        </div>
 
-        {% for pedido_producto in object.pedidoproducto_set.all %}
-            <p>{{ pedido_producto.cantidad }} {{ pedido_producto.producto.nombre }}</p>
-        {% endfor %}
-
-
-
-        <p class="detalle-producto"><strong>TOTAL: ${{ object.precio_total }}</strong> {{ object.pago }}</p>
-
-
-
-                
-
+        <p class="precio-pago"><strong>TOTAL: ${{ pedido.precio_total }}</strong>  {{ pedido.pago }}</p>
     </div>
 
-    {% include 'pedido/components/botones_volver.html' %}
-
+    {% include 'pedido/components/btn_volver_listapedido.html' %}
 {% endblock section %}
 

@@ -1,21 +1,19 @@
 {% extends 'core/base.html' %}
 {% load static %}
+
 {% block section %}
-<div class="container-escritorio">
-    <div class="container-iconos">
-        <a class="acceso-link" href="{% url 'pedidos:pedido_list' %}">
-            <img class="section-img" src="{% static 'core/img/pedidos.webp' %}" alt="Pedidos">
-            Pedidos
-        </a>
-        
-        <a class="acceso-link" href="{% url 'producto:home' %}">
-            <img class="section-img" src="{% static 'core/img/productos.webp' %}" alt="Productos">
-            Productos
-        </a>
+    <div class="container-escritorio">
+        <div class="container-iconos">
+            <a class="acceso-link" href="{% url 'pedidos:pedido_list' %}">
+                <img class="section-img" src="{% static 'core/img/pedidos.webp' %}" alt="Pedidos">
+                Pedidos
+            </a>
+            
+            <a class="acceso-link" href="{% url 'producto:home' %}">
+                <img class="section-img" src="{% static 'core/img/productos.webp' %}" alt="Productos">
+                Productos
+            </a>
+        </div>
     </div>
-</div>
-
-
-
 {% endblock section %}
 

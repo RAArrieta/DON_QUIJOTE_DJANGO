@@ -313,7 +313,13 @@
   padding-bottom: 15px;
 }
 .form-container-pedidos {
-  width: 100%;
+  width: 90%;
+  margin-left: 5%;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -321,8 +327,26 @@
   row-gap: 25px;
   justify-content: space-around;
 }
+.form-container-crearpedidos {
+  width: 90%;
+  margin-left: 5%;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 .form {
   width: 40%;
+}
+.form2 {
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
 }
 .pedido-opc {
   grid-area: opc;
@@ -383,6 +407,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  
+}
+.card-pedidos {
+  width: 70%;
+  margin-top: 20px;
+  margin-left: 15%;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }

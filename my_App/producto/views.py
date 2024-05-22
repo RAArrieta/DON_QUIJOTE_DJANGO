@@ -9,7 +9,6 @@ from django.shortcuts import render
 def home(request):
     return render(request, "producto/index.html")
 
-
 class ProductoCategoriaDetail(LoginRequiredMixin, DetailView):
     model = models.ProductoCategoria
 
@@ -37,6 +36,8 @@ class ProductoCategoriaUpdate(LoginRequiredMixin, UpdateView):
 class ProductoCategoriaDelete(LoginRequiredMixin, DeleteView):
     model = models.ProductoCategoria
     success_url = reverse_lazy("producto:productocategoria_list")
+
+
 
 
 class ProductoDetail(LoginRequiredMixin, DetailView):
