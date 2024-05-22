@@ -10,7 +10,7 @@
         <hr>
         <p class="detalle-producto">Categoria: {{ object.categoria_id }}</p>
         <p class="detalle-producto">Descripción: {{ object.descripcion }}</p>
-        <p class="detalle-producto">Precio: ${{ object.precio }}</p>
+        <p class="detalle-producto">Precio: ${{ object.precio_unit }}</p>
     </div>
 
     {% include 'producto/components/btn_volver_listaproducto.html' %}

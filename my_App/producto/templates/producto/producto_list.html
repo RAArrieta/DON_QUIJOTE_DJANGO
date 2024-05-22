@@ -17,7 +17,7 @@
                 {% for producto in categoria.list %}
                 <div class="producto-opciones">
                     <p class="producto-nombre">{{ producto.nombre }}</p>
-                    <p class="producto-precio">${{ producto.precio }}</p>
+                    <p class="producto-precio">${{ producto.precio_unit }}</p>
                     <div class="producto-opc">
                         <a href="{% url 'producto:producto_detail' producto.id %}"><img class="icono-opcion-producto" src="{% static 'core/img/lupa.webp' %}" alt="Detalle Producto"></a>
                         <a href="{% url 'producto:producto_update' producto.id %}"><img class="icono-opcion-producto" src="{% static 'core/img/editar.webp' %}" alt="Detalle Producto"></a>
